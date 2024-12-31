@@ -1,0 +1,41 @@
+/* Container for the image page */
+.image-page-container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    overflow: hidden;
+
+    /* Prevent any content from spilling out */
+}
+.about-page-container{
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    overflow: hidden;
+    background-color: #090026;
+
+}
+/* Full-page image styling */
+.about-page-image {
+    width: 70%; /* Make the image take the full width of the viewport */
+    height: 100%; /* Make the image take the full height of the viewport */
+    object-fit: cover; /* Ensure the image covers the viewport without distortion */
+    position: absolute; /* Optional: Makes it easier to layer other elements if needed */
+    top: 0;
+    left: 30;
+}
+
+
+/* Full-page image styling */
+.full-page-image {
+    width: 75%; /* Make the image take the full width of the viewport */
+    height: 100%; /* Make the image take the full height of the viewport */
+    object-fit: cover; /* Ensure the image covers the viewport without distortion */
+    position: absolute; /* Optional: Makes it easier to layer other elements if needed */
+    top: 0;
+    left: 30;
+}
