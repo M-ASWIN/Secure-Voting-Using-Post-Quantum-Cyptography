@@ -44,13 +44,4 @@ public class UserService {
         }
         throw new RuntimeException("Invalid credentials");
     }
-    
-    public User registerUser(User user) {
-        // Check if username already exists
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            throw new RuntimeException("Username already exists");
-        }
-        // Save the user
-        return userRepository.save(user);
-    }
 }

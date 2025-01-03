@@ -1,7 +1,6 @@
 package com.example.Secure_voting.Controllers;
 
 
-import com.example.Secure_voting.Entity.User;
 import com.example.Secure_voting.Service.UserService;
 
 import lombok.Data;
@@ -31,10 +30,5 @@ public class AuthController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-    }
-
-    @PostMapping("/login")
-    public User login(@RequestBody User user) {
-        return userService.login(user.getUsername(), user.getPassword());
     }
 }
