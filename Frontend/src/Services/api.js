@@ -18,6 +18,9 @@ export const getResults = () =>
     axios.get(`${API_URL}/results`);
 
 
-export const validateUser = (mobileNumber,aadharNumber) =>
-    axios.post(`${API_URL}/validate-user`, { mobileNumber, aadharNumber });
-
+export const validateUser = (aadharNumber) => {
+    // Ensure aadharNumber is treated as a string
+    const aadharNumberString = String(aadharNumber);
+  
+    return axios.post(`${API_URL}/auth/validate-user`, { aadharNumber: aadharNumberString });
+  };

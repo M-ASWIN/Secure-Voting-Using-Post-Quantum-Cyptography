@@ -35,17 +35,16 @@ const RegisterPage = () => {
                 setSuccess('');
                 return;
             }
+            const response = await axios.post('http://localhost:8080/auth/validate-user' ,{aadharNumber : formData.aadharNumber});
+            alert(response.data);
 
-            // Call the backend API to validate mobile and Aadhar number
-            const response = await validateUser(formData.mobileNumber, formData.aadharNumber);
-        
-            if (response.data.valid) {
+            if (response.data="valid") {
                 setSuccess('Registration successful');
                 setError('');
                 console.log('User data submitted:', formData);
 
                 // Send the registration data to the backend
-                await axios.post('/api/register', formData);
+                // await axios.post('/auth/register', formData);
             } else {
                 setError('Mobile number or Aadhar number not found in the database');
                 setSuccess('');
