@@ -66,7 +66,7 @@ const StartPage = () => {
             
 
             <footer className="footer" id="footer">
-                <div class="footer-container">
+                <div className="footer-container">
                 
                     <div className="footer-section contact-info">
                         <p className="title">Contact us:</p>
@@ -76,18 +76,18 @@ const StartPage = () => {
                         
                     </div>
 
-                    <div class="footer-divider"></div>
+                    <div className="footer-divider"></div>
 
               
-                    <div class="footer-section additional-info">
-                    <div class="navbar2">
-                        <div class="section">
+                    <div className="footer-section additional-info">
+                    <div className="navbar2">
+                        <div className="section">
                             <h4>GetIn</h4>
                             <a href="/login">Login</a>
                             <a href="/register">Register</a>
                         </div>
 
-                        <div class="section">
+                        <div className="section">
                             <h4>Know More</h4>
                             <a href="#features">Features</a>
                             <a href="#about">About</a>
@@ -95,10 +95,10 @@ const StartPage = () => {
                         </div>
                     </div>
 
-                        <div class="section">
+                        <div className="section">
                             <h4>Follow Us</h4>
                         
-                            <div class="social-icons">
+                            <div className="social-icons">
                                 <img src={FacebookIcon} alt="Start" className="social-image" />
                                 <img src={InstaIcon} alt="Start" className="social-image" />
                                 <img src={TwitterIcon} alt="Start" className="social-image" />
@@ -108,10 +108,10 @@ const StartPage = () => {
                     </div>
 
            
-                    <div class="footer-divider"></div>
+                    <div className="footer-divider"></div>
 
                  
-                    <div class="footer-section feedback-form">
+                    <div className="footer-section feedback-form">
                         <h4>Quick Feedback</h4>
                         <form>
                             <textarea></textarea>
@@ -119,7 +119,7 @@ const StartPage = () => {
                         </form>
                     </div>
                 </div>
-                <p class="footer-note">© 2024 Secure Voting System. All rights reserved.</p>
+                <p className="footer-note">© 2024 Secure Voting System. All rights reserved.</p>
         </footer>
 
         </div>

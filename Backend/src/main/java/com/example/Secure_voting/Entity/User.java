@@ -12,15 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
     private LocalDate dob;
     private String fatherName;
     private String mobileNumber;
     private String email;
-    @ManyToOne
-    @JoinColumn(name = "aadhar_id")
-    private Aadhaar aadhaar;
-
+    private String aadharNumber;  
     private String password;
     private String role = "USER"; // Default role
   

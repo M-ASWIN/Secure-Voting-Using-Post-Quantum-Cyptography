@@ -37,11 +37,12 @@ public class UserService {
         }
     }
 
-    public User login(String username, String password) {
-        User user = userRepository.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        }
-        throw new RuntimeException("Invalid credentials");
+    public boolean isAadhaarNumberExists(String aadhaarNumber) {
+        return userRepository.existsByAadharNumber(aadhaarNumber);
+    }
+    
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
     }
 }

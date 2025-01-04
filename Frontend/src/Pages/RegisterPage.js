@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/RegisterPage.css';
-import { validateUser } from '../Services/api';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import registerImage from '../assets/Figure.png'; // Ensure this image exists in your assets folder
 
 const RegisterPage = () => {
@@ -18,6 +18,8 @@ const RegisterPage = () => {
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    
+    const navigate = useNavigate(); // Initialize navigate function
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,24 +37,69 @@ const RegisterPage = () => {
                 setSuccess('');
                 return;
             }
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(formData.mobileNumber)) {
+                setError('Invalid phone number');
+                setSuccess('');
+                return;
+            }
+            const dob = new Date(formData.dob);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            const monthDifference = today.getMonth() - dob.getMonth();
+            const dayDifference = today.getDate() - dob.getDate();
+
+            if (
+                age < 18 ||
+                (age === 18 && monthDifference < 0) ||
+                (age === 18 && monthDifference === 0 && dayDifference < 0)
+            ) {
+                setError('You must be at least 18 years old.');
+                setSuccess('');
+                return;
+            }
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            if (!emailRegex.test(formData.email)) {
+                setError('Please enter a valid Gmail address.');
+                setSuccess('');
+                return;
+            }
+
             const response = await axios.post('http://localhost:8080/auth/validate-user' ,{aadharNumber : formData.aadharNumber});
-            alert(response.data);
-
-            if (response.data="valid") {
-                setSuccess('Registration successful');
-                setError('');
+           
+            if (response.data==="valid") {
                 console.log('User data submitted:', formData);
-
-                // Send the registration data to the backend
-                // await axios.post('/auth/register', formData);
+                const response2 = axios.post('http://localhost:8080/auth/register-user', formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if ((await response2).status===200) {
+                    setSuccess('Registration successful');
+                    setError('');
+                    alert("Registration was successfull Go to login");
+                    navigate("/");
+                }
+                else {
+                    setError('Registration unsuccessful');
+                    setSuccess('');
+                }
             } else {
-                setError('Mobile number or Aadhar number not found in the database');
+                setError('Aadhar number not found in the database hence you cant register');
                 setSuccess('');
             }
         } catch (err) {
-            console.error(err);
-            setError('An error occurred while processing your registration');
-            setSuccess('');
+            if (err.response && err.response.status === 400) {
+                // Handle 400 Bad Request
+                console.log("test");
+                setError('Aadhar number already found in the database hence you cannot register');
+                setSuccess('');
+            }
+            else{
+                console.error(err);
+                setError('Aadhar number not found in the database hence you cannot register');
+                setSuccess('');
+            }
         }
     };
 
