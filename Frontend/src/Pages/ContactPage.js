@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../Styles/UserProfile.css";
 
-const UserProfile = () => {
+const ContactPage = () => {
+ 
     return (
         <div className="start-container-user">
         <nav className="navbar-user">
@@ -43,4 +44,4 @@ const UserProfile = () => {
     );
 };
 
-export default UserProfile;
+export default ContactPage;

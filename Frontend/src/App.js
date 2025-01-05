@@ -9,6 +9,9 @@ import AboutPage from './Pages/AboutPage';
 import AdminDashboard from './Pages/AdminDashboard';
 import UserProfile from './Pages/UserProfile';
 import ProtectedRoute from './components/ProtectedRoute';
+import ContactPage from './Pages/ContactPage';
+import ElectionPage from './Pages/ElectionPage';
+import ProfilePage from './Pages/ProfilePage';
 // import VotingPage from './Pages/VotingPage';
 // import ResultsPage from './Pages/ResultsPage';
 
@@ -22,10 +25,15 @@ function App() {
                 <Route path="/features" exact element={<FeaturesPage />} />
                 <Route path="/about" exact element={<AboutPage />} />
                 <Route path="/forgot-password" element={<ForgotPassPage/>} />
+                <Route path="/current-elections" element={<ElectionPage />} />
+                <Route path="/contact-us" element={<ContactPage />} />
+                <Route path="/personal-profile" element={<ProfilePage />} />
                 <Route
                     path="/admin-dashboard"
                     element={
+                        <ProtectedRoute requiredRole="ADMIN">
                             <AdminDashboard />
+                        </ProtectedRoute>
                     }
                 />
                 <Route

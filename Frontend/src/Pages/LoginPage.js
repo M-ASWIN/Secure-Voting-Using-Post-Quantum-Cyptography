@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { login } from '../Services/api';
 import axios from 'axios';
 import '../Styles/LoginPage.css';
 import loginImage from '../assets/login.png';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -12,8 +10,10 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    
 
     const handleLogin = async () => {
+
         try {
             const response = await axios.post(
                 'http://localhost:8080/auth/login',
@@ -22,6 +22,7 @@ const LoginPage = () => {
 
                  } // Include credentials (cookies)
             );
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             localStorage.setItem('session_id', response.data.sessioncookie); // Set the role returned by the backend
             if (response.data.role === 'ADMIN') {
                 navigate('/admin-dashboard');
@@ -31,8 +32,12 @@ const LoginPage = () => {
             } else {
                 navigate('/'); // Default redirect
         }
-        } catch (err) {
-            setError(err);
+        } catch (error) {
+            const err=JSON.stringify(error);
+            const err2=JSON.parse(err);
+            if(err2.status===401){
+            setError("Invalid credentials");
+            }
             setSuccess('');
         }
     };

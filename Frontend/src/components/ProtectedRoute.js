@@ -1,8 +1,6 @@
 // src/components/ProtectedRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useEffect,useState } from 'react';
-import Cookies from 'js-cookie';
 
 
 const ProtectedRoute = ({ children, requiredRole }) => {
@@ -21,7 +19,6 @@ const ProtectedRoute = ({ children, requiredRole }) => {
         // If not authenticated, redirect to login page
         return <Navigate to="/" />;
     }
-    localStorage.removeItem('session_id');
 
     if (requiredRole && userRole !== requiredRole) {
         // If user role doesn't match, redirect to unauthorized page

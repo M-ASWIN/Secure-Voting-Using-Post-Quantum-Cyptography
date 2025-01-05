@@ -58,7 +58,7 @@ public class AuthController {
     }
 
       @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> loginUser(@RequestBody Map<String, String> loginRequest, HttpSession session, HttpServletResponse response) {
+    public ResponseEntity<Map<String,Object>> loginUser(@RequestBody Map<String, String> loginRequest, HttpSession session, HttpServletResponse response) {
         String email = loginRequest.get("email");
         String password = loginRequest.get("password");
 
@@ -73,15 +73,17 @@ public class AuthController {
             sessionCookie.setSecure(false); 
             response.addCookie(sessionCookie);
             System.out.println(session.getAttribute("user"));
+
              // Create response with role
-             Map<String, String> responseMap = Map.of(
+             Map<String, Object> responseMap = Map.of(
                 "message", "Login successful",
                 "role", user.getRole(),
+                "user",user,
                 "sessioncookie", session.getId().toString()
             );
             return ResponseEntity.ok(responseMap);
         } else {
-            Map<String, String> responseMap = Map.of(
+            Map<String, Object> responseMap = Map.of(
                 "message", "Invalid credentials"
             );
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( responseMap);
