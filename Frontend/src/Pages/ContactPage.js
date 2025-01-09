@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../Styles/UserProfile.css";
+import homeIcon from "../assets/icons/home-icon-silhouette.png"
+
 
 const ContactPage = () => {
  
@@ -8,6 +10,13 @@ const ContactPage = () => {
         <div className="start-container-user">
         <nav className="navbar-user">
             <ul className="nav-links">
+                <li>
+                    <div >
+                        <a href="/user-profile">
+                        <img src={homeIcon} alt="home"></img>
+                        </a>
+                    </div>
+                </li>
                 <li>
                     <NavLink 
                         to="/personal-profile" 

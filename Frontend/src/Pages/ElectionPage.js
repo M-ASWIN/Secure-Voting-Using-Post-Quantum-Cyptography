@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../Styles/UserProfile.css";
+import homeIcon from "../assets/icons/home-icon-silhouette.png"
+
 
 const ElectionPage = () => {
 
@@ -8,6 +10,13 @@ const ElectionPage = () => {
         <div className="start-container-user">
         <nav className="navbar-user">
             <ul className="nav-links">
+                 <li>
+                    <div >
+                        <a href="/user-profile">
+                        <img src={homeIcon} alt="home"></img>
+                        </a>
+                    </div>
+                </li>
                 <li>
                     <NavLink 
                         to="/personal-profile" 
@@ -39,7 +48,7 @@ const ElectionPage = () => {
                 </li>
             </ul>
         </nav>
-        <div>hello</div>
+        <div>Elections</div>
         </div>
     );
 };

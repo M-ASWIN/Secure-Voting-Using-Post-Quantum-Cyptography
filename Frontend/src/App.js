@@ -12,6 +12,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ContactPage from './Pages/ContactPage';
 import ElectionPage from './Pages/ElectionPage';
 import ProfilePage from './Pages/ProfilePage';
+import CreateElection from './Pages/CreateElection';
+import UserLists from './Pages/UserLists';
 // import VotingPage from './Pages/VotingPage';
 // import ResultsPage from './Pages/ResultsPage';
 
@@ -28,6 +30,10 @@ function App() {
                 <Route path="/current-elections" element={<ElectionPage />} />
                 <Route path="/contact-us" element={<ContactPage />} />
                 <Route path="/personal-profile" element={<ProfilePage />} />
+                <Route path="/create-Elections" element={<CreateElection />} />
+                <Route path="/users-list" element={<UserLists />} />
+
+
                 <Route
                     path="/admin-dashboard"
                     element={

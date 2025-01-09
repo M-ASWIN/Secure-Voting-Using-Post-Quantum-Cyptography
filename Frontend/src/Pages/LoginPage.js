@@ -22,9 +22,11 @@ const LoginPage = () => {
 
                  } // Include credentials (cookies)
             );
+            console.log(response);
             localStorage.setItem("user", JSON.stringify(response.data.user));
             localStorage.setItem('session_id', response.data.sessioncookie); // Set the role returned by the backend
             if (response.data.role === 'ADMIN') {
+                localStorage.setItem('userRole', response.data.role); 
                 navigate('/admin-dashboard');
             } else if (response.data.role === 'USER') {
                 localStorage.setItem('userRole', response.data.role); // Set the role returned by the backend

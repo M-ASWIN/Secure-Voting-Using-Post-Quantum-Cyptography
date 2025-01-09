@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../Styles/UserProfile.css";
+import "../Styles/Profile.css";
+import homeIcon from "../assets/icons/home-icon-silhouette.png"
+
 
 const ProfilePage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +21,14 @@ const ProfilePage = () => {
     return (
         <div className="start-container-user">
         <nav className="navbar-user">
-            <ul className="nav-links">
+            <ul className="navlinks">
+                <li>
+                <div className="hello">
+                        <a href="/user-profile">
+                        <img src={homeIcon} alt="home"></img>
+                        </a>
+                    </div>
+                </li>
                 <li>
                     <NavLink 
                         to="/personal-profile" 
@@ -55,7 +64,7 @@ const ProfilePage = () => {
         <div className="profile-section">
                 <div className="profile-photo-container">
                     <img
-                        src="https://via.placeholder.com/250"
+                        src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile-thumbnail.png"
                         alt="Profile"
                         className="profile-photo-img"
                     />
@@ -65,11 +74,13 @@ const ProfilePage = () => {
                    
                     <div className="profile-detail-box-inner">
                         <p>Name:</p>
-                        <h2><strong> {user.name}</strong> </h2>
+                        <h2>
+                            <strong>{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}</strong>
+                        </h2>
                     </div>
                     <div className="profile-detail-box-inner">
                         <p>Father's Name : </p>
-                        <h2><strong>  {user.fatherName}</strong> </h2>
+                        <h2><strong>  {user.fatherName.charAt(0).toUpperCase() + user.fatherName.slice(1).toLowerCase()}</strong> </h2>
                     </div>
 
                     <div className="profile-box-inner">
