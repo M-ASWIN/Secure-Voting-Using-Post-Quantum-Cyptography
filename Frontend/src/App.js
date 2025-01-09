@@ -14,6 +14,7 @@ import ElectionPage from './Pages/ElectionPage';
 import ProfilePage from './Pages/ProfilePage';
 import CreateElection from './Pages/CreateElection';
 import UserLists from './Pages/UserLists';
+import UserDetails from './Pages/UserDetails';
 // import VotingPage from './Pages/VotingPage';
 // import ResultsPage from './Pages/ResultsPage';
 
@@ -32,7 +33,7 @@ function App() {
                 <Route path="/personal-profile" element={<ProfilePage />} />
                 <Route path="/create-Elections" element={<CreateElection />} />
                 <Route path="/users-list" element={<UserLists />} />
-
+                <Route path="/users/:userId" element={<UserDetails />} /> {/* Route for user details */}
 
                 <Route
                     path="/admin-dashboard"

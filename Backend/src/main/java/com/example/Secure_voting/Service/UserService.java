@@ -9,6 +9,7 @@ import com.example.Secure_voting.Repository.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,14 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
+    }
+
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Long userId) {
+        return userRepository.findById(userId).orElseThrow();
     }
 }

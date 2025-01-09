@@ -84,14 +84,14 @@
 }
 
 .nav-link li img {
-    height: 40px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
     width: auto;
     cursor: pointer;
 }
 
 .nav-link li:first-child {
     /* Pushes everything else to the right */
-    margin-right: 280px;
+    margin-right: 260px;
     display: flex;
     align-items: center;
 }
@@ -264,15 +264,15 @@
 }
 
 /* Welcome Text Section */
-.welcome-text {
+.welcome-txt {
     text-align: center;
-    margin-top: 90px;
+    margin-top: 60px;
     animation: fadeIn 2s ease-in-out;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.welcome-text h1 {
+.welcome-txt h1 {
     font-size: 4rem;
     font-weight: bold;
     letter-spacing: 2px;

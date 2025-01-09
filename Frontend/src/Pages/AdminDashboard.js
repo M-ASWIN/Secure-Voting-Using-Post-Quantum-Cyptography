@@ -12,8 +12,11 @@ const AdminDashboard = () => {
             <ul className="nav-link">
                 <li>
                    <div >
+                        <a href="/admin-dashboard">
                         <img src={homeIcon} alt="home"></img>
-                        </div>
+                        </a>
+                    </div>
+                        
                 </li>
                 <li>
                     <NavLink 
@@ -53,7 +56,7 @@ const AdminDashboard = () => {
                 </li>
             </ul>
         </nav>
-        <div className="welcome-text">
+        <div className="welcome-txt">
                 <h1>
                     WELCOME, <span className="animated-text">{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}</span>!
                 </h1>

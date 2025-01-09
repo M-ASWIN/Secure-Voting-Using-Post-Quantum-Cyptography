@@ -1,0 +1,236 @@
+
+.nav-linkes {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  align-items: center;
+}
+
+/* Default link style */
+.nav-linkes a {
+  font-size: 18px;
+  font-weight: 600;
+  color: white; /* Change text color to white on hover */
+  text-decoration: none; /* Remove default underline */
+  position: relative; /* To position the underline */
+  padding-bottom: 7px; /* Add space below the text for the underline */
+  transition: color 0.3s ease;
+  margin-right: 50px;
+}
+
+/* Hover effect */
+.nav-linkes a:hover {
+  color: #007bff; /* Default blue color */
+
+}
+
+/* Active link style */
+.active-link {
+  color: #007bff; /* Active link text color */
+  text-decoration: underline; /* Highlight active link */
+}
+
+/* Active link underline */
+.nav-linkes a.active-link::after {
+  content: ""; /* Required for the pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Positioned 5px below the text */
+  height: 4px;/* Thickness of the underline */
+  border-radius: 7px;
+  width: 100%; /* Span the full width of the text */
+  background-color: #007bff; /* Color of the underline */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Active link text color */
+.nav-linkes a.active-link {
+  color: white; /* Change text color for the active link */
+}
+
+
+.nav-linkes li {
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
+}
+
+.nav-linkes li:first-child {
+  margin-left: 0;
+}
+
+.nav-linkes li img {
+  height: 30px; /* Adjust size as needed */
+  width: auto;
+  cursor: pointer;
+}
+
+.nav-linkes li:first-child {
+  /* Pushes everything else to the right */
+  margin-right: 244.6px;
+  display: flex;
+  align-items: center;
+}
+
+
+/* UserProfile.css */
+.users-page-container {
+  padding: 20px;
+  background-color: #121212; /* Dark background for the page */
+  text-align: center;
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly; /* Center the boxes */
+}
+
+.user-card {
+  background-color: #1c1c1c; /* Dark background for the card */
+  border: 1px solid #444; /* Lighter border */
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Strong shadow for depth */
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px); /* Lift the card up on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deepen shadow on hover */
+  background-color: #2a2a2a; /* Slightly lighter card on hover */
+}
+
+.user-card h2 {
+  margin-top: 0;
+  color: #ff4081; /* Bright accent color for heading */
+}
+
+.user-card p {
+  margin: 10px 0;
+  color: #e0e0e0; /* Light gray text for good contrast */
+}
+
+strong {
+  color: #f1f1f1; /* Lighter text for emphasis */
+}
+
+/* UserProfile.css */
+.user-profile-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 19); /* Dark blue background */
+  padding: 40px;
+  min-height: 100vh;
+  color: white;
+}
+
+.user-profile-photo-container {
+  display: flex;
+  justify-content: center;
+  margin-right: 40px;
+}
+
+.user-profile-photo-img {
+  width: 250px; /* Adjusted for larger profile image */
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #007bff; 
+  margin-right: 30px;/* Blue border around the image */
+}
+
+.user-profile-details-container {
+  background-color: rgb(0, 0, 19); /* Slightly lighter dark blue */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.user-profile-details-container-title {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: -100px;
+}
+
+.user-profile-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff; /* Blue color for title */
+  text-transform: uppercase;
+  margin-left: -150px;
+}
+
+.user-profile-detail-box-inner {
+  margin-bottom: 15px;
+
+}
+
+.user-profile-detail-box-inner p {
+  font-size: 1rem;
+  margin: 0;
+  color: #007bff; /* Light blue color for text */
+}
+
+.user-profile-detail-box-inner h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white; /* White color for heading */
+}
+
+.user-profile-box-inner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.user-profile-box-inner div {
+  flex: 1;
+}
+
+.user-profile-dob-container, .user-profile-age-container {
+  margin-bottom: 10px;
+}
+
+.user-profile-dob-container p, .user-profile-age-container p {
+  font-size: 1rem;
+  color: #007bff; /* Light blue text */
+}
+
+.user-profile-dob-container h2, .user-profile-age-container h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white; /* White text for headings */
+}
+.view-details-button {
+  display: inline-block;
+  padding: 6px 20px;
+  font-size: 16px;
+  background-color: rgb(0, 0, 0); /* Dark blue background */
+  color: white; /* White text */
+  text-decoration: none; /* Remove underline */
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for all changes */
+  cursor: pointer;
+}
+
+/* Hover effect with gradient and shadow */
+.view-details-button:hover {
+  background: linear-gradient(45deg, #ff4081, #ffc8f0); /* Gradient blue on hover */
+  color: white;
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.users-page-container h1{
+  color:#007bff;
+}
