@@ -80,11 +80,11 @@
 }
 
 .navlinks li:first-child {
-    margin-left: 0;
+    margin-left: 20px;
 }
 
 .navlinks li img {
-    height: 40px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
     width: auto;
     cursor: pointer;
 }

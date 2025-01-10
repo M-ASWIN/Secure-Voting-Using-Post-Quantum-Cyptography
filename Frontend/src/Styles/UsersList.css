@@ -209,22 +209,52 @@ strong {
   margin: 0;
   color: white; /* White text for headings */
 }
+
 .view-details-button {
   display: inline-block;
-  padding: 6px 20px;
+  padding: 7px 20px;
+  margin-top: 5px ;
+  margin-bottom: 10px;
   font-size: 16px;
-  background-color: rgb(0, 0, 0); /* Dark blue background */
+  background-color: rgb(74, 74, 74); /* Dark blue background */
   color: white; /* White text */
   text-decoration: none; /* Remove underline */
   text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  border-radius: 15px;
+  box-shadow: 6px 3px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
   transition: all 0.3s ease; /* Smooth transition for all changes */
   cursor: pointer;
+ 
 }
+
 
 /* Hover effect with gradient and shadow */
 .view-details-button:hover {
+  background: linear-gradient(45deg, #ff4081, #ffc8f0); /* Gradient blue on hover */
+  color: white;
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+
+.view-button {
+  display: inline-block;
+  padding: 6px 35px;
+  font-size: 16px;
+  background-color: rgb(74, 74, 74); /* Dark blue background */
+  color: white; /* White text */
+  text-decoration: none; /* Remove underline */
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 6px 3px 6px rgba(112, 112, 112, 0.2); /* Add subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for all changes */
+  cursor: pointer;
+ 
+}
+
+
+/* Hover effect with gradient and shadow */
+.view-button:hover {
   background: linear-gradient(45deg, #ff4081, #ffc8f0); /* Gradient blue on hover */
   color: white;
   transform: translateY(-2px); /* Slight lift effect */

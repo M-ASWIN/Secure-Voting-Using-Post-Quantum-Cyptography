@@ -55,4 +55,12 @@ public class UserService {
     public User findById(Long userId) {
         return userRepository.findById(userId).orElseThrow();
     }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

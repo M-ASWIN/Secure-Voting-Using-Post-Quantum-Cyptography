@@ -75,7 +75,7 @@ const UserLists = () => {
           </nav>
           
           <div className="users-page-container">
-            <h1>User Details</h1>
+            <h1 style={{ color:'#007bff'}}>User Details</h1>
             <div className="users-list">
                 {users.length > 0 ? (
                 users
@@ -83,12 +83,33 @@ const UserLists = () => {
                     .map((user) => (
                     <div key={user.id} className="user-card">
                         <h2>{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}</h2>
-                        <p><strong>Email:</strong> {user.email}</p>
-                        <p><strong>Phone Number:</strong> {user.mobileNumber}</p>
-                        <p><strong>Aadhar Number:</strong> {user.aadharNumber}</p>
-                        <Link to={`/users/${user.id}`} className="view-details-button">
+                        <p><strong style={{ color:'#ff4081'}}>Email:</strong> {user.email}</p>
+                        <p><strong style={{ color:'#ff4081'}}>Phone Number:</strong> {user.mobileNumber}</p>
+                        <p><strong style={{ color:'#ff4081'}}>Aadhar Number:</strong> {user.aadharNumber}</p>
+                        <button className="view-details-button"><Link to={`/users/${user.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                         View full Details
                         </Link>
+                        </button>
+                        <button
+                            className="view-button"
+                            onClick={() => {
+                            if (window.confirm(`Are you sure you want to delete ${user.name}?`)) {
+                                // Handle delete user
+                                axios
+                                .delete(`http://localhost:8080/api/users/${user.id}`)
+                                .then(() => {
+                                    alert(`${user.name} deleted successfully.`);
+                                    setUsers(users.filter((u) => u.id !== user.id));
+                                })
+                                .catch((error) => {
+                                    console.error("Error deleting user:", error);
+                                    alert("Failed to delete user.");
+                                });
+                            }
+                            }}
+                        >
+                            Delete User
+                        </button>
                     </div>
                     ))
                 ) : (
