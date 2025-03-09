@@ -83,9 +83,9 @@ const UserLists = () => {
                     .map((user) => (
                     <div key={user.id} className="user-card">
                         <h2>{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}</h2>
-                        <p><strong style={{ color:'#ff4081'}}>Email:</strong> {user.email}</p>
-                        <p><strong style={{ color:'#ff4081'}}>Phone Number:</strong> {user.mobileNumber}</p>
-                        <p><strong style={{ color:'#ff4081'}}>Aadhar Number:</strong> {user.aadharNumber}</p>
+                        <p><strong style={{ color:'#007bff'}}>Email:</strong> {user.email}</p>
+                        <p><strong style={{ color:'#007bff'}}>Phone Number:</strong> {user.mobileNumber}</p>
+                        <p><strong style={{ color:'#007bff'}}>Aadhar Number:</strong> {user.aadharNumber}</p>
                         <button className="view-details-button"><Link to={`/users/${user.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                         View full Details
                         </Link>

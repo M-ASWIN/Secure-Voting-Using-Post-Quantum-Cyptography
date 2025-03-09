@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "../Styles/UserProfile.css";
 import homeIcon from "../assets/icons/home-icon-silhouette.png"
 
 
 const ElectionPage = () => {
+    
+    const [elections, setElections] = useState([]);
+
+    useEffect(() => {
+        axios.get("/api/elections/ongoing")
+            .then(response => setElections(response.data))
+            .catch(error => console.error("Error fetching elections", error));
+    }, []);
 
     return (
         <div className="start-container-user">
@@ -48,7 +57,41 @@ const ElectionPage = () => {
                 </li>
             </ul>
         </nav>
-        <div>Elections</div>
+        <div>
+            <h2>Ongoing Elections</h2>
+            {elections.length > 0 ? (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Election Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Candidates</th>
+                            <th>Vote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {elections.map((election) => (
+                            <tr key={election.id}>
+                                <td>{election.name}</td>
+                                <td>{election.startDate}</td>
+                                <td>{election.endDate}</td>
+                                <td>
+                                    {election.candidates.map(candidate => (
+                                        <div key={candidate.id}>{candidate.name} ({candidate.party})</div>
+                                    ))}
+                                </td>
+                                <td>
+                                    <button onClick={() => alert("Voting Feature Coming Soon!")}>Vote</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p>No ongoing elections available.</p>
+            )}
+        </div>
         </div>
     );
 };

@@ -1,0 +1,131 @@
+/* body, html {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+} */
+
+/* Container */
+.containerCreate {
+    width: 50%;
+    background: rgb(0, 0, 19);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-left: 22%;
+    color: white; /* Ensures text is readable on dark background */
+}
+
+
+/* Heading */
+.headingCreate {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-groupCreate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.labelCreate {
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+/* Input Fields */
+.input-fieldCreate {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.input-fieldCreate:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Candidate List */
+.sub-headingCreate {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.candidate-list-2Create {
+    width: 90%;
+    margin: auto;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    text-align: left;
+}
+
+/* Candidate Item */
+.candidate-itemCreate {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+/* Checkbox Styling */
+.checkboxCreate {
+    margin-right: 10px;
+}
+
+/* Candidate Information */
+.candidate-infoCreate {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Button */
+.buttonCreate {
+    width: 92%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buttonCreate:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .input-field,
+    .candidate-list,
+    .button {
+        width: 100%;
+    }
+}

@@ -87,6 +87,7 @@
     height: 30px; /* Adjust size as needed */
     width: auto;
     cursor: pointer;
+    margin-right: 235px;
 }
 
 .nav-link li:first-child {
@@ -96,7 +97,7 @@
     align-items: center;
 }
 
-
+ */
 .start-logout-button{
     padding: 10px 30px;
     margin-left: 30px;
