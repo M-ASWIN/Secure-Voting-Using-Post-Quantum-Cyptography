@@ -1,68 +1,64 @@
-Secure Voting Application
+# Secure Voting Application
 
-Overview
+## Overview
 
 The Secure Voting Application is a decentralized and cryptographically secure voting system built using Post-Quantum Cryptography (PQC). It utilizes React for the frontend, Spring Boot for the backend, and an SQL database for storing votes and user information. The system ensures integrity, confidentiality, and authenticity using PQC algorithms such as Dilithium and Kyber.
 
-Features
+## Features
 
-Secure authentication and voter verification
+*  Secure authentication and voter verification
 
-End-to-end encryption using post-quantum cryptography
+*  End-to-end encryption using post-quantum cryptography
 
-Tamper-proof and transparent voting process
+*  Tamper-proof and transparent voting process
 
-Decentralized and scalable architecture
+*  Decentralized and scalable architecture
 
-User-friendly UI for voting and results visualization
+*  User-friendly UI for voting and results visualization
 
-Technologies Used
+## Technologies Used
 
-Frontend:
+### Frontend:
 
-React.js
+*  React.js
 
-TypeScript (optional)
+*  JavaScript 
 
-Tailwind CSS / Material UI
+*  CSS / Material UI
 
-Axios for API communication
+* Axios for API communication
 
-Redux for state management (if required)
+*  npm (Node Package Manager)
 
-npm (Node Package Manager)
+### Backend:
 
-Backend:
+*  Spring Boot
 
-Spring Boot
+*  Java with Lombok
 
-Java with Lombok
+*  MySQL (SQL database)
 
-PostgreSQL / MySQL (SQL database)
+*  Hibernate (ORM for database interaction)
 
-Hibernate (ORM for database interaction)
+*  Spring Security for authentication
 
-Spring Security for authentication
+*  liboqs-java for post-quantum cryptographic operations
 
-liboqs-java for post-quantum cryptographic operations
+## Installation and Setup
 
-Hardware Security Module (HSM) integration
-
-Installation and Setup
-
-Prerequisites
+###  Prerequisites
 
 Ensure you have the following installed:
 
-Node.js and npm
+*  Node.js and npm
 
-Java 17+
+*  Java 17+
 
-Spring Boot
+*  Spring Boot
 
-PostgreSQL / MySQL
+*  MySQL
 
-Docker (optional for containerization)
+*  Docker (optional for containerization)
 
 Clone the Repository
 
@@ -71,7 +67,7 @@ git clone https://github.com/your-username/secure-voting-app.git
 cd secure-voting-app
 ```
 
-Backend Setup
+### Backend Setup
 
 Navigate to the backend folder:
 
@@ -99,7 +95,7 @@ Run the Spring Boot server:
 mvn spring-boot:run
 ```
 
-Frontend Setup
+### Frontend Setup
 
 Navigate to the frontend folder:
 
@@ -115,73 +111,36 @@ Start the development server:
 ```
 npm start
 ```
-API Endpoints
 
-Method
 
-Endpoint
+## Security and Post-Quantum Cryptography
 
-Description
+* Digital signatures using Dilithium for voter authentication
 
-POST
+* Key encapsulation using Kyber for secure key exchange
 
-/api/auth/register
-
-Register a new user
-
-POST
-
-/api/auth/login
-
-User authentication
-
-GET
-
-/api/vote/candidates
-
-Get list of candidates
-
-POST
-
-/api/vote/cast
-
-Cast a secure vote
-
-GET
-
-/api/vote/results
-
-Retrieve voting results
-
-Security and Post-Quantum Cryptography
-
-Digital signatures using Dilithium for voter authentication
-
-Key encapsulation using Kyber for secure key exchange
-
-Secure TLS 1.3 communication between client and server
-
-Hardware Security Module (HSM) used for key generation and storage
+* Secure TLS 1.3 communication between client and server
 
 Running with Docker
 
 To containerize the application:
-
+```
 docker-compose up --build
+```
 
 Contributing
 
-Fork the repository.
+1. Fork the repository.
 
-Create a feature branch (git checkout -b feature-name).
+2. Create a feature branch (git checkout -b feature-name).
 
-Commit changes (git commit -m "Added new feature").
+3. Commit changes (git commit -m "Added new feature").
 
-Push to the branch (git push origin feature-name).
+4. Push to the branch (git push origin feature-name).
 
-Open a Pull Request.
+5. Open a Pull Request.
 
 
 Contact
 
-For inquiries, contact your-email@example.com.
+For inquiries, contact **aswinm2203@gmail.com**
