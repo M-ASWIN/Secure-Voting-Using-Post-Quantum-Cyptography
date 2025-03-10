@@ -8,12 +8,13 @@ import homeIcon from "../assets/icons/home-icon-silhouette.png"
 const ElectionPage = () => {
     
     const [elections, setElections] = useState([]);
-
-    useEffect(() => {
-        axios.get("/api/elections/ongoing")
-            .then(response => setElections(response.data))
-            .catch(error => console.error("Error fetching elections", error));
-    }, []);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId= user.id;
+    // useEffect(() => {
+    //     axios.get("/api/elections/ongoing")
+    //         .then(response => setElections(response.data))
+    //         .catch(error => console.error("Error fetching elections", error));
+    // }, []);
 
     useEffect(() => {
         fetchElections();
@@ -21,7 +22,7 @@ const ElectionPage = () => {
 
     const fetchElections = async () => {
         try {
-            const response = await axios.get(`/api/user-elections/available?userId=${userId}`);
+            const response = await axios.get(`http://localhost:8080/api/user-elections/available/${userId}`);
             setElections(response.data);
         } catch (error) {
             console.error("Error fetching elections:", error);
@@ -30,7 +31,7 @@ const ElectionPage = () => {
 
     const handleVote = async (electionId, candidateId) => {
         try {
-            await axios.post(`/api/elections/vote`, null, {
+            await axios.post(`http://localhost:8080/api/user-elections/vote`, null, {
                 params: { userId, electionId, candidateId },
             });
 
@@ -85,38 +86,25 @@ const ElectionPage = () => {
             </ul>
         </nav>
         <div>
-            <h2>Ongoing Elections</h2>
-            {elections.length > 0 ? (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Election Name</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Candidates</th>
-                            <th>Vote</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {elections.map((election) => (
-                            <tr key={election.id}>
-                                <td>{election.name}</td>
-                                <td>{election.startDate}</td>
-                                <td>{election.endDate}</td>
-                                <td>
-                                    {election.candidates.map(candidate => (
-                                        <div key={candidate.id}>{candidate.name} ({candidate.party})</div>
-                                    ))}
-                                </td>
-                                <td>
-                                    <button onClick={() => alert("Voting Feature Coming Soon!")}>Vote</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <h2>Available Elections</h2>
+            {elections.length === 0 ? (
+                <p>No elections available for voting.</p>
             ) : (
-                <p>No ongoing elections available.</p>
+                elections.map((election) => (
+                    <div key={election.id} className="election-card">
+                        <h3>{election.name}</h3>
+                        <ul>
+                            {election.candidates.map((candidate) => (
+                                <li key={candidate.id}>
+                                    {candidate.name}
+                                    <button onClick={() => handleVote(election.id, candidate.id)}>
+                                        Vote
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
             )}
         </div>
         </div>

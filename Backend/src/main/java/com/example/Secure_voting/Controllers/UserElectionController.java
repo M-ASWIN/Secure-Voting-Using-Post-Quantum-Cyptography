@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import com.example.Secure_voting.Repository.CandidateRepository;
 import com.example.Secure_voting.Repository.ElectionRepository;
 import com.example.Secure_voting.Repository.UserRepository;
 import com.example.Secure_voting.Repository.VoteRepository;
+import com.example.Secure_voting.Service.ElectionService;
 
 @RestController
 @RequestMapping("/api/user-elections")
@@ -37,13 +39,21 @@ public class UserElectionController {
     @Autowired
     private CandidateRepository candidateRepository;
 
+    @Autowired
+    private ElectionService electionService;
     // Get elections the user hasn't voted in
-    @GetMapping("/available")
-    public List<Election> getAvailableElections(@RequestParam Long userId) {
-        User user = userRepository.findById(userId).orElseThrow();
-        return electionRepository.findAll().stream()
-                .filter(election -> !voteRepository.existsByUserAndElection(user, election))
-                .collect(Collectors.toList());
+    // @GetMapping("/available")
+    // public List<Election> getAvailableElections(@RequestParam Long userId) {
+    //     User user = userRepository.findById(userId).orElseThrow();
+    //     return electionRepository.findAll().stream()
+    //             .filter(election -> !voteRepository.existsByUserAndElection(user, election))
+    //             .collect(Collectors.toList());
+    // }
+
+     @GetMapping("/available/{userId}")
+    public ResponseEntity<List<Election>> getAvailableElections(@PathVariable Long userId) {
+        List<Election> elections = electionService.getElectionsForUser(userId);
+        return ResponseEntity.ok(elections);
     }
 
     // Vote for a candidate

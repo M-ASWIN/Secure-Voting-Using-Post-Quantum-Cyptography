@@ -25,7 +25,7 @@ const UserLists = () => {
     return (
           <div className="start-container-user">
           <nav className="navbar-user">
-              <ul className="nav-linkes">
+              <ul className="nav-nav-linkes">
                   <li>
                      <div >
                           <a href="/admin-dashboard">
