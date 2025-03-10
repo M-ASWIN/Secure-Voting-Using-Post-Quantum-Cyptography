@@ -15,6 +15,33 @@ const ElectionPage = () => {
             .catch(error => console.error("Error fetching elections", error));
     }, []);
 
+    useEffect(() => {
+        fetchElections();
+    }, []);
+
+    const fetchElections = async () => {
+        try {
+            const response = await axios.get(`/api/user-elections/available?userId=${userId}`);
+            setElections(response.data);
+        } catch (error) {
+            console.error("Error fetching elections:", error);
+        }
+    };
+
+    const handleVote = async (electionId, candidateId) => {
+        try {
+            await axios.post(`/api/elections/vote`, null, {
+                params: { userId, electionId, candidateId },
+            });
+
+            // Remove voted election from the list
+            setElections(elections.filter(election => election.id !== electionId));
+        } catch (error) {
+            console.error("Error submitting vote:", error);
+        }
+    };
+
+
     return (
         <div className="start-container-user">
         <nav className="navbar-user">

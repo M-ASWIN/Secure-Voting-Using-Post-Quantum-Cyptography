@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import "../Styles/UserProfile.css";
+import "../Styles/UsersList.css";
 import homeIcon from "../assets/icons/home-icon-silhouette.png"
 import "../Styles/CreateCandidates.css";
 import axios from "axios";
@@ -45,10 +45,24 @@ const CandidatesList = () => {
         }
     };
     
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this candidate?")) {
+          try {
+            await axios.delete(`http://localhost:8080/admin/candidates/${id}`);
+            setCandidates(candidates.filter((candidate) => candidate.id !== id));
+            alert("Candidate deleted successfully!");
+          } catch (error) {
+            console.error("Error deleting candidate:", error);
+            alert("Failed to delete candidate as he may be participating in a election.");
+          }
+        }
+      };
+
+      
    return (
         <div className="start-container-user">
           <nav className="navbar-user">
-              <ul className="nav-link">
+              <ul className="nav-nav-linkes">
                   <li>
                      <div >
                           <a href="/admin-dashboard">
@@ -97,6 +111,7 @@ const CandidatesList = () => {
           </nav>
 
           <div className="admin-container">
+            <div className="inner-container">
             <h2>Manage Candidates</h2>
 
             {/* Candidate Creation Form */}
@@ -121,7 +136,7 @@ const CandidatesList = () => {
 
                 <button type="submit">Add Candidate</button>
             </form>
-
+            </div>
                     {/* Display Candidate List as a Table */}
             <div className="candidate-list">
                 <h3>Existing Candidates</h3>
@@ -131,6 +146,7 @@ const CandidatesList = () => {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Party</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,6 +155,14 @@ const CandidatesList = () => {
                                 <td>{candidate.id}</td>
                                 <td>{candidate.name}</td>
                                 <td>{candidate.party}</td>
+                                <td>
+                                <button
+                                    className="delete-button"
+                                    onClick={() => handleDelete(candidate.id)}
+                                >
+                                    Delete
+                                </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

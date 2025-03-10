@@ -32,7 +32,7 @@ public class VotingService {
         Candidate candidate = candidateRepository.findById(candidateId)
                 .orElseThrow(() -> new RuntimeException("Candidate not found"));
         Vote vote = new Vote();
-        vote.setVoter(voter);
+        vote.setUser(voter);
         vote.setCandidate(candidate);
         voteRepository.save(vote);
     }

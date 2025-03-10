@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../Styles/UserProfile.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "../Styles/UsersList.css"
+import "../Styles/UserProfile.css"
 import homeIcon from "../assets/icons/home-icon-silhouette.png"
 import { Link } from "react-router-dom";
 

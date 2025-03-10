@@ -1,28 +1,50 @@
-// package com.example.Secure_voting.Service;
+package com.example.Secure_voting.Service;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+import com.example.Secure_voting.Entity.Election;
+import com.example.Secure_voting.Repository.ElectionRepository;
+import com.example.Secure_voting.Repository.CandidateRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
-// import com.example.Secure_voting.Entity.Election;
-// import com.example.Secure_voting.Repository.ElectionRepository;
+@Service
+public class ElectionService {
+    
+    @Autowired
+    private ElectionRepository electionRepository;
+    
+    @Autowired
+    private CandidateRepository candidateRepository;
 
-// import java.time.LocalDate;
-// import java.util.List;
+    // public Election createElection(Election election, Set<Long> candidateIds) {
+    //     Set<Candidate> candidates = candidateRepository.findAllById(candidateIds).stream().collect(java.util.stream.Collectors.toSet());
+    //     election.setCandidates(candidates);
+    //     return electionRepository.save(election);
+    // }
 
-// @Service
-// public class ElectionService {
+    public boolean deleteElectionById(Long id) {
+        if (electionRepository.existsById(id)) {
+            electionRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 
-//     @Autowired
-//     private ElectionRepository electionRepository;
+    public List<Election> getAllElections() {
+        return electionRepository.findAll();
+    }
 
-//     public Election createElection(Election election) {
-//         return electionRepository.save(election);
-//     }
+    public Optional<Election> getElectionById(Long id) {
+        return electionRepository.findById(id);
+    }
 
-//     public List<Election> getOngoingElections() {
-//         LocalDate today = LocalDate.now();
-//         return electionRepository.findByStartDateBeforeAndEndDateAfter(today, today);
-//     }
-
-// }
-
+    public boolean deleteCandidateById(Long id) {
+        if (candidateRepository.existsById(id)) {
+            candidateRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+    
+}
