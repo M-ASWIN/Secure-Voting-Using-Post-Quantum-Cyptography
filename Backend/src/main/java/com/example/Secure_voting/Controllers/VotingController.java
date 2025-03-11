@@ -1,6 +1,7 @@
 package com.example.Secure_voting.Controllers;
 
 
+import com.example.Secure_voting.Dto.ResultDTO;
 import com.example.Secure_voting.Entity.Candidate;
 import com.example.Secure_voting.Entity.User;
 import com.example.Secure_voting.Service.VotingService;
@@ -26,5 +27,10 @@ public class VotingController {
     public String castVote(@RequestBody User voter, @PathVariable Long candidateId) {
         votingService.castVote(voter, candidateId);
         return "Vote cast successfully!";
+    }
+
+     @GetMapping("/results/{electionId}")
+    public List<ResultDTO> getResults(@PathVariable Long electionId) {
+        return votingService.getElectionResults(electionId);
     }
 }

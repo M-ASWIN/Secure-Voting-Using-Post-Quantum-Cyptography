@@ -1,0 +1,122 @@
+
+/* Contact Page Styling */
+.contact-container {
+    text-align: center;
+    padding: 20px 20px;
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+
+/* Contact Title */
+.contact-title {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Contact Details */
+.contact-details {
+    font-size: 1.2rem;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contact-details a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.contact-details a:hover {
+    color: #0056b3;
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: auto;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(0, 0, 19);
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #ffffff;
+    background-color: rgb(0, 0, 34);
+}
+
+/* Submit Button */
+.contact-form button {
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .contact-container {
+        width: 90%;
+    }
+
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    .contact-details {
+        font-size: 1rem;
+    }
+}

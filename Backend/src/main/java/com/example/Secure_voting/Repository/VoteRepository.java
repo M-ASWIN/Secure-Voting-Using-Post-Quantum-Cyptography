@@ -6,6 +6,8 @@ import com.example.Secure_voting.Entity.Vote;
 
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +22,11 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
     @Transactional
     @Query("DELETE FROM Vote v WHERE v.election.id = :electionId")
     void deleteByElectionId(@Param("electionId") Long electionId);
+
+    @Query("SELECT v.candidate.id, v.candidate.name, COUNT(v) as votes " +
+           "FROM Vote v WHERE v.election.id = :electionId " +
+           "GROUP BY v.candidate.id, v.candidate.name " +
+           "ORDER BY votes DESC")
+    List<Object[]> getElectionResults(@Param("electionId") Long electionId);
 }
 

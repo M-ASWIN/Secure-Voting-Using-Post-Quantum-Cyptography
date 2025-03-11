@@ -1,0 +1,66 @@
+.admin-container2 {
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  .admin-title2 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .results-table2{
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .results-table2 th,
+  .results-table2 td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .results-table2 th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .results-table2 tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  .chart-container2 {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .refresh-button2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s ease;
+  }
+  
+  .refresh-button2:hover {
+    background: #0056b3;
+  }
+  

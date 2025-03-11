@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../Styles/UserProfile.css";
-import homeIcon from "../assets/icons/home-icon-silhouette.png"
-
+import "../Styles/ElectionPage.css";
+import homeIcon from "../assets/icons/home-icon-silhouette.png";
 
 const ElectionPage = () => {
-    
     const [elections, setElections] = useState([]);
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
-    const userId= user.id;
-    // useEffect(() => {
-    //     axios.get("/api/elections/ongoing")
-    //         .then(response => setElections(response.data))
-    //         .catch(error => console.error("Error fetching elections", error));
-    // }, []);
+    const userId = user.id;
 
     useEffect(() => {
         fetchElections();
@@ -29,25 +25,15 @@ const ElectionPage = () => {
         }
     };
 
-    const handleVote = async (electionId, candidateId) => {
-        try {
-            await axios.post(`http://localhost:8080/api/user-elections/vote`, null, {
-                params: { userId, electionId, candidateId },
-            });
-
-            // Remove voted election from the list
-            setElections(elections.filter(election => election.id !== electionId));
-        } catch (error) {
-            console.error("Error submitting vote:", error);
-        }
+    const handleVote = (electionId) => {
+        navigate(`/vote/${electionId}`);
     };
-
 
     return (
         <div className="start-container-user">
         <nav className="navbar-user">
             <ul className="nav-links">
-                 <li>
+                <li>
                     <div >
                         <a href="/user-profile">
                         <img src={homeIcon} alt="home"></img>
@@ -85,32 +71,25 @@ const ElectionPage = () => {
                 </li>
             </ul>
         </nav>
-        <div>
-            <h2>Available Elections</h2>
-            {elections.length === 0 ? (
-                <p>No elections available for voting.</p>
-            ) : (
-                elections.map((election) => (
-                    <div key={election.id} className="election-card">
-                        <h3>{election.name}</h3>
-                        <ul>
-                            {election.candidates.map((candidate) => (
-                                <li key={candidate.id}>
-                                    {candidate.name}
-                                    <button onClick={() => handleVote(election.id, candidate.id)}>
-                                        Vote
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+            <div className="elections-container">
+                <h2>Available Elections</h2>
+                {elections.length === 0 ? (
+                    <p>No elections available for voting.</p>
+                ) : (
+                    <div className="elections-grid">
+                        {elections.map((election) => (
+                            <div key={election.id} className="election-card">
+                                <h3>{election.name}</h3>
+                                <button className="vote-button" onClick={() => handleVote(election.id)}>
+                                    Vote
+                                </button>
+                            </div>
+                        ))}
                     </div>
-                ))
-            )}
-        </div>
+                )}
+            </div>
         </div>
     );
 };
-
-
 
 export default ElectionPage;

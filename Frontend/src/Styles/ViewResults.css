@@ -1,0 +1,53 @@
+
+
+.view-results-container {
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(0,0,19);
+    min-height: 100vh;
+  }
+  
+  .view-results-title {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .election-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .election-card {
+    background: rgb(0,0,19);
+    padding: 15px;
+    width: 60%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 2px solid #007bff; /* Blue border */
+    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .election-card h2{
+    color: #007bff;
+  }
+  
+  .view-results-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .view-results-button:hover {
+    background: #0056b3;
+  }
+  
