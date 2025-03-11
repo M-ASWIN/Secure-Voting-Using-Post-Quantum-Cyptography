@@ -20,6 +20,18 @@ public class User {
     private String aadharNumber;  
     private String password;
     private String role = "USER"; // Default role
+
+    @Lob
+    private byte[] mlkemPublicKey;
+
+    @Lob
+    private byte[] sharedSecret;
+
+    @Lob
+    private byte[] mldsaPublicKey;
+
+    @Lob
+    private byte[] signature; // Store the user's signature
   
 
 }

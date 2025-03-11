@@ -23,10 +23,11 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
     @Query("DELETE FROM Vote v WHERE v.election.id = :electionId")
     void deleteByElectionId(@Param("electionId") Long electionId);
 
-    @Query("SELECT v.candidate.id, v.candidate.name, COUNT(v) as votes " +
-           "FROM Vote v WHERE v.election.id = :electionId " +
-           "GROUP BY v.candidate.id, v.candidate.name " +
-           "ORDER BY votes DESC")
+    @Query("SELECT v.candidate.id, v.candidate.name, v.candidate.party, COUNT(v) as votes " +
+    "FROM Vote v WHERE v.election.id = :electionId " +
+    "GROUP BY v.candidate.id, v.candidate.name, v.candidate.party " +
+    "ORDER BY votes DESC")
     List<Object[]> getElectionResults(@Param("electionId") Long electionId);
+
 }
 

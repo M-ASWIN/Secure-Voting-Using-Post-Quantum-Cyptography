@@ -46,17 +46,18 @@ public class VotingService {
 
     public List<ResultDTO> getElectionResults(Long electionId) {
         List<Object[]> results = voteRepository.getElectionResults(electionId);
-
-        int totalVotes = results.stream().mapToInt(r -> ((Number) r[2]).intValue()).sum();
-
+    
+        int totalVotes = results.stream().mapToInt(r -> ((Number) r[3]).intValue()).sum();
+    
         return results.stream().map(r -> {
             Long candidateId = ((Number) r[0]).longValue();
             String candidateName = (String) r[1];
-            int voteCount = ((Number) r[2]).intValue();
+            String candidateParty = (String) r[2]; // Fetch party
+            int voteCount = ((Number) r[3]).intValue();
             double percentage = (double) voteCount / totalVotes * 100;
-
-            return new ResultDTO(candidateName, voteCount, percentage);
+    
+            return new ResultDTO(candidateName, candidateParty, voteCount, percentage);
         }).collect(Collectors.toList());
-    }
+    }    
 }
 
