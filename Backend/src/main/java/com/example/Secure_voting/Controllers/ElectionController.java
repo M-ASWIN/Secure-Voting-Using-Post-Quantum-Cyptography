@@ -5,7 +5,11 @@ import com.example.Secure_voting.Entity.Candidate;
 import com.example.Secure_voting.Entity.Election;
 import com.example.Secure_voting.Repository.CandidateRepository;
 import com.example.Secure_voting.Repository.ElectionRepository;
+import com.example.Secure_voting.Repository.VoteRepository;
 import com.example.Secure_voting.Service.ElectionService;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +29,9 @@ public class ElectionController {
 
     @Autowired
     private CandidateRepository candidateRepository;
+
+    @Autowired
+    private VoteRepository voteRepository;
     
     @PostMapping
     public ResponseEntity<String> createElection(@RequestBody ElectionRequest request) {
@@ -58,7 +65,10 @@ public class ElectionController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<String> deleteElection(@PathVariable Long id) {
+        // Step 1: Delete votes linked to this election
+        voteRepository.deleteByElectionId(id);
         boolean isDeleted = electionService.deleteElectionById(id);
         if (isDeleted) {
             return ResponseEntity.ok("Election deleted successfully.");
