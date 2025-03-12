@@ -7,6 +7,7 @@ import "../Styles/ElectionPage.css";
 import homeIcon from "../assets/icons/home-icon-silhouette.png";
 
 const ElectionPage = () => {
+    
     const [elections, setElections] = useState([]);
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
@@ -62,7 +63,13 @@ const ElectionPage = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <button className="start-logout-button" onClick={() => { 
+                    <button className="start-logout-button" onClick={async () => { 
+                        const userId = user.id;
+                        if (userId) {
+                            await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                                method: "PUT" 
+                            });
+                        } 
                         localStorage.clear(); 
                         window.location.href = "/";
                     }}>

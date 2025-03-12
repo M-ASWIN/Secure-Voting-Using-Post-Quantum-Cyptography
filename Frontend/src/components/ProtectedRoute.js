@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
 
     if (requiredRole && userRole !== requiredRole) {
         // If user role doesn't match, redirect to unauthorized page
-        return <Navigate to="/about" />;
+        return <Navigate to="/" />;
     }
 
     return children; // Allow access to the route if authenticated and role matches

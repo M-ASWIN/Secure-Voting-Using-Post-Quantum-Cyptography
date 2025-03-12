@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ResultService {
+        
     private final VoteRepository voteRepository;
 
     public List<Object[]> getResults() {

@@ -4,9 +4,11 @@ import "../Styles/UsersList.css";
 import homeIcon from "../assets/icons/home-icon-silhouette.png"
 import "../Styles/CreateCandidates.css";
 import axios from "axios";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CandidatesList = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
     const [candidates, setCandidates] = useState([]);
     const [formData, setFormData] = useState({
         name: "",
@@ -35,9 +37,17 @@ const CandidatesList = () => {
 
     // Handle form submission
     const handleSubmit = async (e) => {
+        const toastId = toast.loading("Creating election...", { position: "top-right" });
+        
         e.preventDefault();
         try {
             await axios.post("http://localhost:8080/admin/candidates", formData);
+             toast.update(toastId, {
+                    render: "Candidate added successfully!",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1000,
+                  });      
             fetchCandidates(); // Refresh candidate list after adding
             setFormData({ name: "", party: "", manifesto: "" }); // Reset form
         } catch (error) {
@@ -59,7 +69,7 @@ const CandidatesList = () => {
       };
 
       
-   return (
+    return (
         <div className="start-container-user">
           <nav className="navbar-user">
               <ul className="nav-nav-linkes">
@@ -100,7 +110,13 @@ const CandidatesList = () => {
                       </NavLink>
                   </li>
                   <li>
-                      <button className="start-logout-button" onClick={() => { 
+                      <button className="start-logout-button" onClick={async () => { 
+                        const userId = user.id;
+                        if (userId) {
+                            await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                                method: "PUT" 
+                            });
+                        } 
                           localStorage.clear(); 
                           window.location.href = "/";
                       }}>
@@ -137,6 +153,7 @@ const CandidatesList = () => {
                 <button type="submit">Add Candidate</button>
             </form>
             </div>
+            <ToastContainer/>
                     {/* Display Candidate List as a Table */}
             <div className="candidate-list">
                 <h3>Existing Candidates</h3>

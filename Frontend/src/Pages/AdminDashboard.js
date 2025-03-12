@@ -47,7 +47,13 @@ const AdminDashboard = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <button className="start-logout-button" onClick={() => { 
+                    <button className="start-logout-button" onClick={async () => { 
+                    const userId = user.id;
+                    if (userId) {
+                        await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                            method: "PUT" 
+                        });
+                    }
                         localStorage.clear(); 
                         window.location.href = "/";
                     }}>

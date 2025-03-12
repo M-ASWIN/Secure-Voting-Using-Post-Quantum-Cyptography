@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 import homeIcon from "../assets/icons/home-icon-silhouette.png"
 
 const ViewResults = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [elections, setElections] = useState([]);
   const navigate = useNavigate();
 
@@ -63,7 +65,13 @@ const ViewResults = () => {
                           </NavLink>
                       </li>
                       <li>
-                          <button className="start-logout-button" onClick={() => { 
+                          <button className="start-logout-button" onClick={async () => { 
+                            const userId = user.id;
+                            if (userId) {
+                                await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                                    method: "PUT" 
+                                });
+                            } 
                               localStorage.clear(); 
                               window.location.href = "/";
                           }}>

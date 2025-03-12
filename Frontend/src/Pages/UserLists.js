@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 
 const UserLists = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
     const [users, setUsers] = useState([]);
 
@@ -63,7 +64,13 @@ const UserLists = () => {
                       </NavLink>
                   </li>
                   <li>
-                      <button className="start-logout-button" onClick={() => { 
+                      <button className="start-logout-button" onClick={async () => { 
+                            const userId = user.id;
+                            if (userId) {
+                                await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                                    method: "PUT" 
+                                });
+                            } 
                           localStorage.clear(); 
                           window.location.href = "/";
                       }}>

@@ -21,6 +21,7 @@ import lombok.Data;
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @Data
 public class UserController {
+    
     @Autowired
     private UserService userService;
 

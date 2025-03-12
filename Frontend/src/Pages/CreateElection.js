@@ -3,8 +3,12 @@ import axios from "axios";
 import "../Styles/CreateElection.css"; // Import the CSS file
 import { NavLink } from "react-router-dom";
 import homeIcon from "../assets/icons/home-icon-silhouette.png";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateElection = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [election, setElection] = useState({
     name: "",
     startDate: "",
@@ -43,6 +47,9 @@ const CreateElection = () => {
   };
 
   const handleSubmit = async (e) => {
+
+    const toastId = toast.loading("Creating election...", { position: "top-right" });
+
     e.preventDefault();
 
     const formattedElection = {
@@ -54,27 +61,53 @@ const CreateElection = () => {
       const response = await axios.post("http://localhost:8080/api/elections", formattedElection, {
         headers: { "Content-Type": "application/json" },
       });
+      toast.update(toastId, {
+        render: "Election created successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });      
+      toast.dismiss(toastId);
 
-      alert(`Success: ${response.data}`);
-      fetchElections(); // Refresh election list
+          fetchElections(); // Refresh election list
       setElection({ name: "", startDate: "", endDate: "", candidateIds: [] });
       setSelectedCandidates([]);
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
-      alert(`Error: ${error.response?.data || "Something went wrong"}`);
-    }
+      toast.dismiss(toastId);
+      toast.update(toastId, {
+        render: "Election creation unsuccessfull!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });      }
   };
 
   // Delete election
   const handleDelete = async (id) => {
+    const toastId = toast.loading("Deleting election...");
+
     try {
       await axios.delete(`http://localhost:8080/api/elections/${id}`);
-      alert("Election deleted successfully");
-      fetchElections(); // Refresh list after deletion
+      toast.update(toastId, {
+        render: "Election deleted successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+    });      
+    toast.dismiss(toastId);
+    
+    fetchElections();
+
     } catch (error) {
       console.error("Error deleting election:", error);
-      alert("Failed to delete election");
-    }
+      toast.dismiss(toastId);
+      toast.update(toastId, {
+        render: "Failed to delete election!",
+        type: "error",
+        isLoading: false,
+        autoClose: 2000,
+    });    }
   };
 
   return (
@@ -109,7 +142,13 @@ const CreateElection = () => {
             </NavLink>
           </li>
           <li>
-            <button className="start-logout-button" onClick={() => {
+            <button className="start-logout-button" onClick={async () => { 
+              const userId = user.id;
+              if (userId) {
+                  await fetch(`http://localhost:8080/auth/logout?userId=${userId}`, { 
+                      method: "PUT" 
+                  });
+              }
               localStorage.clear();
               window.location.href = "/";
             }}>
@@ -143,6 +182,8 @@ const CreateElection = () => {
           <button type="submit">Create Election</button>
         </form>
       </div>
+      <ToastContainer /> 
+
 
       <div className="election-list">
         <h2>Election List</h2>
@@ -167,6 +208,7 @@ const CreateElection = () => {
                   <td>
                     <button className="delete-button" onClick={() => handleDelete(elec.id)}>Delete</button>
                   </td>
+
                 </tr>
               ))}
             </tbody>
@@ -174,6 +216,8 @@ const CreateElection = () => {
         ) : (
           <p>No elections available.</p>
         )}
+                  <ToastContainer /> 
+
       </div>
     </div>
   );

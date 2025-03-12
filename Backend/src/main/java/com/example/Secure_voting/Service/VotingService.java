@@ -50,7 +50,6 @@ public class VotingService {
         int totalVotes = results.stream().mapToInt(r -> ((Number) r[3]).intValue()).sum();
     
         return results.stream().map(r -> {
-            Long candidateId = ((Number) r[0]).longValue();
             String candidateName = (String) r[1];
             String candidateParty = (String) r[2]; // Fetch party
             int voteCount = ((Number) r[3]).intValue();

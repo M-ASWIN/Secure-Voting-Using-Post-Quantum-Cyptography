@@ -46,6 +46,12 @@
 
 }
 
+/* Hover effect */
+.nav-link a:first-child {
+    margin-right: 55px;
+
+}
+
 
 /* Active link style */
 .active-link {
@@ -87,7 +93,7 @@
     height: 30px; /* Adjust size as needed */
     width: auto;
     cursor: pointer;
-    margin-right: 235px;
+    margin-right: 210px;
 }
 
 .nav-link li:first-child {

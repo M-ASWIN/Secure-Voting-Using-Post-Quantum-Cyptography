@@ -30,12 +30,6 @@ public class ElectionService {
     @Autowired
     private VoteRepository voteRepository;
 
-    // public Election createElection(Election election, Set<Long> candidateIds) {
-    //     Set<Candidate> candidates = candidateRepository.findAllById(candidateIds).stream().collect(java.util.stream.Collectors.toSet());
-    //     election.setCandidates(candidates);
-    //     return electionRepository.save(election);
-    // }
-
     public boolean deleteElectionById(Long id) {
         if (electionRepository.existsById(id)) {
             electionRepository.deleteById(id);
