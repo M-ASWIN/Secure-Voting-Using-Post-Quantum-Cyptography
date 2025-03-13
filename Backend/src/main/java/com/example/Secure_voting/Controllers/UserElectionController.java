@@ -66,7 +66,7 @@ public class UserElectionController {
         String encryptedPayload = payload.get("encryptedPayload");
 
         try {
-            MyObject obj = userService.decryptData(encryptedPayload, Base64.getEncoder().encodeToString(sharedSecret)  , MyObject.class);
+            
             try{
                 Signature mlDsa = Signature.getInstance("MLDSA"); 
                 mlDsa.initVerify(userService.convertToPublicKey(mldsaPublickey,"MLDSA"));
@@ -78,6 +78,8 @@ public class UserElectionController {
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User Verification failed");
             }
+
+            MyObject obj = userService.decryptData(encryptedPayload, Base64.getEncoder().encodeToString(sharedSecret)  , MyObject.class);
 
         // Extract fields
         Long userId = (Long) obj.getUserId();
